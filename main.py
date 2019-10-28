@@ -133,9 +133,10 @@ def eval_one_epoch(model, dataset, summary_directory, global_step, config, train
 
 def _preprocess_exampe(model, example, dataset_name):
     example["image"] = tf.cast(example["image"], dtype=tf.float32)/255.
-    example["image"] = tf.image.resize(example["image"], 
-        size=(model.input_shape[0], model.input_shape[1]))
+    # example["image"] = tf.image.resize(example["image"], 
+    #     size=(model.input_shape[0], model.input_shape[1]))
     example["label"] = example["attributes"]["label"]
+    example["label"] = tf.subtract(example["label"],1)
     return example
 
 
@@ -234,7 +235,7 @@ def main():
     learning_rate = tf.keras.optimizers.schedules.ExponentialDecay(
         config.learning_rate, config.decay_every, 
         config.decay_base, staircase=True)
-    optimizer = tf.keras.optimizers.Adam(learning_rate)
+    optimizer = tf.keras.optimizers.RMSprop(learning_rate=config.learning_rate)
     
     if args.reload_ckpt != "None":
         # TODO: fix this hack

@@ -2,7 +2,7 @@ import tensorflow as tf
 
 
 class ResNet50(tf.keras.Model):
-    INPUT_SHAPE = [224, 224]
+    INPUT_SHAPE = [227, 227]
 
     def __init__(self, num_classes, resnet_weights, config, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -10,10 +10,9 @@ class ResNet50(tf.keras.Model):
 
         in_shape = self.input_shape + [3]
 
-        self.model = tf.keras.Sequential([
-            tf.compat.v1.keras.applications.ResNet50(include_top=False,
-                                                        weights=resnet_weights, input_shape=in_shape),
-            tf.keras.layers.GlobalAveragePooling2D(),
+        self.model = tf.keras.models.Sequential([
+            tf.keras.applications.resnet50.ResNet50(include_top=False,
+                                                    weights= resnet_weights, input_shape=in_shape),
             tf.keras.layers.Flatten(),
             tf.keras.layers.BatchNormalization(),
             tf.keras.layers.Dense(128, activation='relu'),
