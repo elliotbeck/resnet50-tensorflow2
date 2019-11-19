@@ -1,8 +1,8 @@
 {
-    "seed": 3,
+    "seed": 1,
     
     "dataset": "pacs",
-    "test_domain": ["sketch"], 
+    "test_domain": ["art_painting"], 
     
     "local_json_dir_name": "tmp",
     
