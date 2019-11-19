@@ -30,7 +30,7 @@ import util
 import local_settings
 
 DEBUG = False
-with open('ResNet50/configs/config_class_resnet.json', 'r') as myfile:
+with open('configs/config_class_resnet.json', 'r') as myfile:
     data=myfile.read()
 config_dic2 = json.loads(data)
 config_seed = config_dic2["seed"]
