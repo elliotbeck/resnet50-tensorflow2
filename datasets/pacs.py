@@ -46,7 +46,7 @@ class PACSConfig(tfds.core.BuilderConfig):
         super(PACSConfig, self).__init__(
             name="{}".format("_".join(self.validation_split)),
             description="pacs dataset",
-            version="0.4.0",
+            version="0.2.0",
             **kwargs)
 
 
@@ -79,25 +79,25 @@ class PACS(tfds.core.GeneratorBasedBuilder):
         # TODO: download remaining datasets and fix the filename vars below - done
 
         filenames = ['pacs/art_painting_train.hdf5', 'pacs/sketch_train.hdf5',
-                     'pacs/cartoon_train.hdf5']
+                     'pacs/photo_train.hdf5']
         train_files = [os.path.join(local_settings.RAW_DATA_PATH, f) 
             for f in filenames]
 
         filenames = ['pacs/art_painting_val.hdf5', 'pacs/sketch_val.hdf5',
-                     'pacs/cartoon_val.hdf5']
+                     'pacs/photo_val.hdf5']
         val_files_in = [os.path.join(local_settings.RAW_DATA_PATH, f) 
             for f in filenames]
 
-        filenames = ['pacs/photo_val.hdf5']
+        filenames = ['pacs/cartoon_val.hdf5']
         val_files_out = [os.path.join(local_settings.RAW_DATA_PATH, f)
                        for f in filenames]
 
         filenames = ['pacs/art_painting_test.hdf5', 'pacs/sketch_test.hdf5',
-                     'pacs/cartoon_test.hdf5']
+                     'pacs/photo_test.hdf5']
         test_files_in = [os.path.join(local_settings.RAW_DATA_PATH, f) 
             for f in filenames]
 
-        filenames = ['pacs/photo_test.hdf5']
+        filenames = ['pacs/cartoon_test.hdf5']
         test_files_out = [os.path.join(local_settings.RAW_DATA_PATH, f)
                        for f in filenames]
 
