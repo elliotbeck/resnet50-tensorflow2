@@ -1,5 +1,5 @@
 {
-    "seed": 3,
+    "seed": 4,
     
     "dataset": "pacs",
     "test_domain": ["photo"], 
