@@ -280,6 +280,14 @@ def main():
         split="validation_out", batch_size=config.batch_size,
         num_batches=num_batches)
 
+    ds_test_in = _get_dataset(config.dataset, model, config.test_domain,
+        split="test_in", batch_size=config.batch_size, 
+        num_batches=num_batches)
+
+    ds_test_out = _get_dataset(config.dataset, model, config.test_domain,
+        split="test_out", batch_size=config.batch_size,
+        num_batches=num_batches)
+
 
     # TODO: add test set - done
     
@@ -317,19 +325,34 @@ def main():
                 summary_directory=os.path.join(manager._directory, "val_out"),
                 global_step=global_step, config=config, training=False)
 
+            test_in_metr = eval_one_epoch(model=model, dataset=ds_test_in,
+                summary_directory=os.path.join(manager._directory, "test_in"), 
+                global_step=global_step, config=config, training=False)
+
+            test_out_metr = eval_one_epoch(model=model, dataset=ds_test_out,
+                summary_directory=os.path.join(manager._directory, "test_out"),
+                global_step=global_step, config=config, training=False)
            
             if epoch == (config.num_epochs - 1):
                 # full training set
                 train_metr = eval_one_epoch(model=model, dataset=ds_train,
                     summary_directory=os.path.join(manager._directory, "train"), 
                     global_step=global_step, config=config, training=False)
-                # full test_out set
+                # full val_out set
                 val_in_metr = eval_one_epoch(model=model, dataset=ds_val_in,
                     summary_directory=os.path.join(manager._directory, "val_in"),
                     global_step=global_step, config=config, training=False)
-                # full test_in set
+                # full val_in set
                 val_out_metr = eval_one_epoch(model=model, dataset=ds_val_out,
                     summary_directory=os.path.join(manager._directory, "val_out"),
+                    global_step=global_step, config=config, training=False)
+                # full test_in set
+                test_in_metr = eval_one_epoch(model=model, dataset=ds_test_in,
+                    summary_directory=os.path.join(manager._directory, "test_in"),
+                    global_step=global_step, config=config, training=False)
+                # full test_out set
+                test_out_metr = eval_one_epoch(model=model, dataset=ds_test_out,
+                    summary_directory=os.path.join(manager._directory, "test_out"),
                     global_step=global_step, config=config, training=False)
 
 
@@ -344,6 +367,10 @@ def main():
                 val_in_metr['accuracy'], val_in_metr['loss']))
             logging.info("val_out_accuracy: {:2f}, val_out_loss: {:4f}".format(
                 val_out_metr['accuracy'], val_out_metr['loss']))
+            logging.info("test_in_accuracy: {:2f}, test_in_loss: {:4f}".format(
+                test_in_metr['accuracy'], test_in_metr['loss']))
+            logging.info("test_out_accuracy: {:2f}, test_out_loss: {:4f}".format(
+                test_out_metr['accuracy'], test_out_metr['loss']))
            
 
             if epoch == epoch_start:
@@ -356,7 +383,8 @@ def main():
     exp_repo.mark_experiment_as_completed(exp_id, 
         train_accuracy=train_metr['accuracy'],
         val_out_accuracy=val_out_metr['accuracy'],
-        val_in_accuracy=val_in_metr['accuracy'])
-
+        val_in_accuracy=val_in_metr['accuracy'],
+        test_in_accuracy=test_in_metr['accuracy'],
+        test_out_accuracy=test_out_metr['accuracy'])
 if __name__ == "__main__":
     main()

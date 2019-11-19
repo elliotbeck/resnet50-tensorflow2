@@ -46,7 +46,7 @@ class PACSConfig(tfds.core.BuilderConfig):
         super(PACSConfig, self).__init__(
             name="{}".format("_".join(self.validation_split)),
             description="pacs dataset",
-            version="0.2.0",
+            version="0.4.0",
             **kwargs)
 
 
@@ -88,10 +88,20 @@ class PACS(tfds.core.GeneratorBasedBuilder):
         val_files_in = [os.path.join(local_settings.RAW_DATA_PATH, f) 
             for f in filenames]
 
-
         filenames = ['pacs/photo_val.hdf5']
         val_files_out = [os.path.join(local_settings.RAW_DATA_PATH, f)
                        for f in filenames]
+
+        filenames = ['pacs/art_painting_test.hdf5', 'pacs/sketch_test.hdf5',
+                     'pacs/cartoon_test.hdf5']
+        test_files_in = [os.path.join(local_settings.RAW_DATA_PATH, f) 
+            for f in filenames]
+
+        filenames = ['pacs/photo_test.hdf5']
+        test_files_out = [os.path.join(local_settings.RAW_DATA_PATH, f)
+                       for f in filenames]
+
+
 
 
         return [tfds.core.SplitGenerator(
@@ -101,13 +111,7 @@ class PACS(tfds.core.GeneratorBasedBuilder):
                         split="train",
                         files=train_files
                     )),
-                # tfds.core.SplitGenerator(
-                #     name=tfds.Split.TEST,
-                #     num_shards=1,
-                #     gen_kwargs=dict(
-                #         split="test",
-                #         files=test_files
-                # )),
+
                 tfds.core.SplitGenerator(
                     name=tfds.Split.VALIDATION,
                     num_shards=10,
@@ -122,8 +126,22 @@ class PACS(tfds.core.GeneratorBasedBuilder):
                     gen_kwargs=dict(
                         split="validation_out",
                         files=val_files_out
-                )
-                )]
+                )),
+                    tfds.core.SplitGenerator(
+                    name="test_in",
+                    num_shards=1,
+                    gen_kwargs=dict(
+                        split="test_in",
+                        files=test_files_in
+                )),
+                tfds.core.SplitGenerator(
+                    name="test_out",
+                    num_shards=1,
+                    gen_kwargs=dict(
+                        split="test_out",
+                        files=test_files_out
+                ))
+                ]
     
 
     def _generate_examples(self, split, files):
