@@ -5,6 +5,7 @@ import json
 import pickle
 import math
 import os
+import random
 from random import shuffle
 import matplotlib
 import sklearn
@@ -29,6 +30,11 @@ import util
 import local_settings
 
 DEBUG = False
+with open('ResNet50/configs/config_class_resnet.json', 'r') as myfile:
+    data=myfile.read()
+config_dic2 = json.loads(data)
+config_seed = config_dic2["seed"]
+random.seed(config_seed)
 
 parser = argparse.ArgumentParser(description='Train my model.')
 parser.add_argument('--config', type=str, 
