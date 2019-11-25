@@ -33,7 +33,7 @@ CELL_TYPES = {
     "U2OS": 3
 }
 
-VALIDATION_SPLIT = ["photo"]
+VALIDATION_SPLIT = ["art_painting"]
 
 
 class PACSConfig(tfds.core.BuilderConfig):
@@ -46,7 +46,7 @@ class PACSConfig(tfds.core.BuilderConfig):
         super(PACSConfig, self).__init__(
             name="{}".format("_".join(self.validation_split)),
             description="pacs dataset",
-            version="0.3.0",
+            version="0.2.0",
             **kwargs)
 
 
