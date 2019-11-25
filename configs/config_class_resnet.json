@@ -12,7 +12,7 @@
     "batch_size": 32,
     "num_epochs": 15,
     
-    "l2_penalty_weight": 1e-6,
+    "l2_penalty_weight": 0,
     
     "eval_every_n_epochs": 5,
     "save_summary_steps": 500,
