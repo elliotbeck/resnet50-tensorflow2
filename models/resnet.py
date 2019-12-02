@@ -12,7 +12,7 @@ class ResNet50(tf.keras.Model):
 
         self.model = tf.keras.models.Sequential([
             tf.keras.applications.resnet50.ResNet50(include_top=False,
-                                                    weights= resnet_weights, input_shape=in_shape),
+                                                    weights= resnet_weights, input_shape=in_shape),                                      
             tf.keras.layers.Flatten(),
             tf.keras.layers.BatchNormalization(),
             tf.keras.layers.Dense(512, activation='relu'),
@@ -29,6 +29,7 @@ class ResNet50(tf.keras.Model):
         self.model.build([None] + self.input_shape + [3])  # Batch input shape.
 
     def call(self, inputs, training=None, mask=None):
+        print(self.model.summary())
         return self.model(inputs, training, mask)
 
     @property
