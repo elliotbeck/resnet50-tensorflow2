@@ -45,6 +45,7 @@ class ResNet50(tf.keras.Model):
         self.model.build([None] + self.input_shape + [3])  # Batch input shape.
 
     def call(self, inputs, training=None, mask=None):
+        print(self.model.summary())
         return self.model(inputs, training, mask)
 
     @property
