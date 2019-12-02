@@ -9,7 +9,7 @@
     "learning_rate": 0.001,
     "decay_every": 500,
     "decay_base": 0.90,
-    "batch_size": 32,
+    "batch_size": 16,
     "num_epochs": 15,
     
     "l2_penalty_weight": 0,
