@@ -15,16 +15,16 @@ class ResNet50(tf.keras.Model):
                                                     weights= resnet_weights, input_shape=in_shape),
             # tf.keras.layers.Flatten(),
             tf.keras.layers.BatchNormalization(),
-            tf.keras.layers.Dense(512, activation='relu')
-            # tf.keras.layers.Dropout(0.5),
-            # tf.keras.layers.BatchNormalization(),
+            tf.keras.layers.Dense(512, activation='relu'),
+            tf.keras.layers.Dropout(0.5),
+            tf.keras.layers.BatchNormalization(),
             # tf.keras.layers.Dense(128, activation='relu'),
             # tf.keras.layers.Dropout(0.5),
             # tf.keras.layers.BatchNormalization(),
             # tf.keras.layers.Dense(64, activation='relu'),
             # tf.keras.layers.Dropout(0.5),
             # tf.keras.layers.BatchNormalization(),
-            # tf.keras.layers.Dense(num_classes, activation='softmax')
+            tf.keras.layers.Dense(num_classes, activation='softmax')
         ])
         self.model.build([None] + self.input_shape + [3])  # Batch input shape.
 
