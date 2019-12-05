@@ -29,7 +29,7 @@ import experiment_repo as repo
 import util
 import local_settings
 
-DEBUG = False
+DEBUG = True
 with open('configs/config_class_resnet.json', 'r') as myfile:
     data=myfile.read()
 config_dic2 = json.loads(data)
@@ -143,6 +143,7 @@ def _preprocess_exampe(model, example, dataset_name):
         size=(model.input_shape[0], model.input_shape[1]))
     example["label"] = example["attributes"]["label"]
     example["label"] = tf.subtract(example["label"],1)
+    print(example["attributes"]["domain"])
     return example
 
 
