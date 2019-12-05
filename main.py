@@ -29,7 +29,7 @@ import experiment_repo as repo
 import util
 import local_settings
 
-DEBUG = True
+DEBUG = False
 with open('configs/config_class_resnet.json', 'r') as myfile:
     data=myfile.read()
 config_dic2 = json.loads(data)
@@ -65,7 +65,6 @@ parser.add_argument('--use_dropout', type=int, help='Flag whether to use dropout
 def loss_fn(model, features, config, training):
     inputs = features["image"]
     label = tf.squeeze(features["label"])
-    print(features["attributes"]["domain"])
     # L2 regularizers
     l2_regularizer = tf.add_n([tf.nn.l2_loss(v) for v in 
         model.trainable_variables if 'bias' not in v.name])
