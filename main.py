@@ -65,7 +65,7 @@ parser.add_argument('--use_dropout', type=int, help='Flag whether to use dropout
 def loss_fn(model, features, config, training):
     inputs = features["image"]
     label = tf.squeeze(features["label"])
-
+    print(features["attributes"]["domain"])
     # L2 regularizers
     l2_regularizer = tf.add_n([tf.nn.l2_loss(v) for v in 
         model.trainable_variables if 'bias' not in v.name])
@@ -143,7 +143,6 @@ def _preprocess_exampe(model, example, dataset_name):
         size=(model.input_shape[0], model.input_shape[1]))
     example["label"] = example["attributes"]["label"]
     example["label"] = tf.subtract(example["label"],1)
-    print(example["attributes"]["domain"])
     return example
 
 
