@@ -35,12 +35,12 @@ class ResNet50(tf.keras.Model):
         self.model.add(tf.keras.layers.GlobalAveragePooling2D())                                    
         self.model.add(tf.keras.layers.Flatten())
         self.model.add(tf.keras.layers.BatchNormalization())
-        # self.model.add(tf.keras.layers.Dense(1024, activation='relu'))
-        # self.model.add(tf.keras.layers.Dropout(0.5))
-        # self.model.add(tf.keras.layers.BatchNormalization())
-        # self.model.add(tf.keras.layers.Dense(256, activation='relu'))
-        # self.model.add(tf.keras.layers.Dropout(0.5))
-        # self.model.add(tf.keras.layers.BatchNormalization())
+        self.model.add(tf.keras.layers.Dense(2048, activation='relu'))
+        self.model.add(tf.keras.layers.Dropout(0.5))
+        self.model.add(tf.keras.layers.BatchNormalization())
+        self.model.add(tf.keras.layers.Dense(1024, activation='relu'))
+        self.model.add(tf.keras.layers.Dropout(0.5))
+        self.model.add(tf.keras.layers.BatchNormalization())
         self.model.add(tf.keras.layers.Dense(num_classes, activation='softmax'))
 
         self.model.build([None] + self.input_shape + [3])  # Batch input shape.
