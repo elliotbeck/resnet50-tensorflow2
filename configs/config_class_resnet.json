@@ -2,7 +2,7 @@
     "seed": 5,
     
     "dataset": "pacs",
-    "test_domain": ["photo"], 
+    "test_domain": ["art_painting"], 
     
     "local_json_dir_name": "tmp",
     

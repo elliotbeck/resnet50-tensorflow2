@@ -27,7 +27,7 @@ flags.DEFINE_string(name="tfds_path", default=None, help="")
 flags = flags.FLAGS
 
 
-VALIDATION_SPLIT = ["photo"]
+VALIDATION_SPLIT = ["art_painting"]
 
 
 class PACSConfig(tfds.core.BuilderConfig):
@@ -40,7 +40,7 @@ class PACSConfig(tfds.core.BuilderConfig):
         super(PACSConfig, self).__init__(
             name="{}".format("_".join(self.validation_split)),
             description="pacs dataset",
-            version="0.4.0",
+            version="0.2.0",
             **kwargs)
 
 
