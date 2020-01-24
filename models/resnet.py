@@ -16,7 +16,7 @@ class ResNet50(tf.keras.Model):
         #self.model.add(tf.keras.layers.GlobalAveragePooling2D())                                    
         self.model.add(tf.keras.layers.Flatten())
         self.model.add(tf.keras.layers.BatchNormalization())
-        self.model.add(tf.keras.layers.Dense(2048, activation='relu'))
+        self.model.add(tf.keras.layers.Dense(4086, activation='relu'))
         self.model.add(tf.keras.layers.Dropout(0.5))
         self.model.add(tf.keras.layers.BatchNormalization())
         self.model.add(tf.keras.layers.Dense(2048, activation='relu'))
