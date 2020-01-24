@@ -22,7 +22,7 @@ class ResNet50(tf.keras.Model):
         self.model.add(tf.keras.layers.Dense(1024, activation='relu'))
         self.model.add(tf.keras.layers.Dropout(0.5))
         self.model.add(tf.keras.layers.BatchNormalization())
-        self.model.add(tf.keras.layers.Dense(32, activation='relu'))
+        self.model.add(tf.keras.layers.Dense(64, activation='relu'))
         self.model.add(tf.keras.layers.Dropout(0.5))
         self.model.add(tf.keras.layers.BatchNormalization())
         self.model.add(tf.keras.layers.Dense(num_classes, activation='softmax'))
