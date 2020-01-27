@@ -29,7 +29,7 @@ do
     export LEARN_RATE=$VAR_LEARN_RATE
     for  VAR_DO_RATE in 0.1 0.3 0.5 0.7 1
     do
-        export DO_RATE=$v
+        export DO_RATE=$VAR_DO_RATE
         sh submit-train-2.0.sh
     done    
 done
