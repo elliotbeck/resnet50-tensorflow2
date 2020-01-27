@@ -8,7 +8,7 @@ export num_gpu_per_job=1
 # memory per job
 export mem_per_gpu=30000
 
-export JOB_NAME='elliot_test'
+export JOB_NAME='elliot1'
 
 # load python
 module load eth_proxy python_gpu/3.6.4
@@ -24,7 +24,7 @@ export NUM_EPOCHS=10
 export BATCH_SIZE=32
 
 
-for VAR_LEARN_RATE in .01 .001 .0001 .00001
+for VAR_LEARN_RATE in 0.01 0.001 
     do
         export LEARN_RATE=$VAR_LEARN_RATE
         sh submit-train-2.0.sh
