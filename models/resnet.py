@@ -4,7 +4,7 @@ import json
 class ResNet50(tf.keras.Model):
     INPUT_SHAPE = [227, 227]
 
-    def __init__(self, num_classes, resnet_weights, config, *args, **kwargs):
+    def __init__(self, num_classes, resnet_weights, dropout_rate, config, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.config = config
 
@@ -17,13 +17,13 @@ class ResNet50(tf.keras.Model):
         self.model.add(tf.keras.layers.Flatten())
         self.model.add(tf.keras.layers.BatchNormalization())
         self.model.add(tf.keras.layers.Dense(2048, activation='relu'))
-        self.model.add(tf.keras.layers.Dropout(0.5))
+        self.model.add(tf.keras.layers.Dropout(dropout_rate))
         self.model.add(tf.keras.layers.BatchNormalization())
         self.model.add(tf.keras.layers.Dense(1024, activation='relu'))
-        self.model.add(tf.keras.layers.Dropout(0.5))
+        self.model.add(tf.keras.layers.Dropout(dropout_rate))
         self.model.add(tf.keras.layers.BatchNormalization())
         self.model.add(tf.keras.layers.Dense(64, activation='relu'))
-        self.model.add(tf.keras.layers.Dropout(0.5))
+        self.model.add(tf.keras.layers.Dropout(dropout_rate))
         self.model.add(tf.keras.layers.BatchNormalization())
         self.model.add(tf.keras.layers.Dense(num_classes, activation='softmax'))
 
