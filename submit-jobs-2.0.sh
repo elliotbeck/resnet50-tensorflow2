@@ -29,9 +29,9 @@ do
     for  VAR_DO_RATE in 0.1 0.3 0.5 0.7 0.9 
     do
         export DO_RATE=$VAR_DO_RATE
-        for  VAR_L2_PEN in 0.1 0.01 0.001 0.0001 0.00001 
+        for  VAR_L2_PEN in 0.01 0.001 0.0001 0.00001 
         do
-            export L2_PEN=$VAR_DO_RATE
+            export L2_PEN=$VAR_L2_PEN 
             sh submit-train-2.0.sh
         done
     done    
