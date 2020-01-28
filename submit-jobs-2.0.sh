@@ -17,18 +17,22 @@ module load cudnn/7.6.4
 
 
 export CONFIG="/cluster/home/ebeck/ResNet50/configs/config_class_resnet.json"
-export L2_PEN=0.001
+
 export DECAY_EVERY=5000
-export NUM_EPOCHS=10
+export NUM_EPOCHS=20
 export BATCH_SIZE=32
 
 
-for VAR_LEARN_RATE in 0.01 0.001 
+for VAR_LEARN_RATE in 0.1 0.01 0.001 0.0001
 do
     export LEARN_RATE=$VAR_LEARN_RATE
-    for  VAR_DO_RATE in 0.1 0.3 
+    for  VAR_DO_RATE in 0.1 0.3 0.5 0.7 0.9 
     do
         export DO_RATE=$VAR_DO_RATE
-        sh submit-train-2.0.sh
+        for  VAR_L2_PEN in 0.1 0.01 0.001 0.0001 0.00001 
+        do
+            export L2_PEN=$VAR_DO_RATE
+            sh submit-train-2.0.sh
+        done
     done    
 done
