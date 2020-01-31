@@ -237,10 +237,10 @@ def main():
             pickle.dump(config_dict_copy, f)
 
     # Set optimizers
-    learning_rate = tf.keras.optimizers.schedules.ExponentialDecay(
-        config.learning_rate, config.decay_every, 
-        config.decay_base, staircase=True)
-    optimizer = tf.keras.optimizers.SGD(learning_rate, momentum = 0.9)
+    # learning_rate = tf.keras.optimizers.schedules.ExponentialDecay(
+    #     config.learning_rate, config.decay_every, 
+    #     config.decay_base, staircase=True)
+    optimizer = tf.keras.optimizers.SGD(config.learning_rate, momentum = 0.9)
     
     if args.reload_ckpt != "None":
         # TODO: fix this hack
