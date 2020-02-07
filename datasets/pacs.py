@@ -40,7 +40,7 @@ class PACSConfig(tfds.core.BuilderConfig):
         super(PACSConfig, self).__init__(
             name="{}".format("_".join(self.validation_split)),
             description="pacs dataset",
-            version="0.9.0",
+            version="0.8.0",
             **kwargs)
 
 
