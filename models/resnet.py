@@ -15,10 +15,11 @@ class ResNet50(tf.keras.Model):
                                                     weights= resnet_weights, input_shape=in_shape))
         self.model.add(tf.keras.layers.GlobalAveragePooling2D())                                    
         self.model.add(tf.keras.layers.Flatten())
-        self.model.add(tf.keras.layers.Dense(256, activation='relu'))
         self.model.add(tf.keras.layers.Dropout(dropout_rate))
-        self.model.add(tf.keras.layers.Dense(256, activation='relu'))
-        self.model.add(tf.keras.layers.Dropout(dropout_rate))
+        self.model.add(tf.keras.layers.Dense(512, activation='relu'))
+        # self.model.add(tf.keras.layers.Dropout(dropout_rate))
+        # self.model.add(tf.keras.layers.Dense(256, activation='relu'))
+        # self.model.add(tf.keras.layers.Dropout(dropout_rate))
         self.model.add(tf.keras.layers.Dense(num_classes, activation='softmax'))
 
         self.model.build([None] + self.input_shape + [3])  # Batch input shape.

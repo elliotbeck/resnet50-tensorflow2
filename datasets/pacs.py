@@ -27,7 +27,7 @@ flags.DEFINE_string(name="tfds_path", default=None, help="")
 flags = flags.FLAGS
 
 
-VALIDATION_SPLIT = ["cartoon"]
+VALIDATION_SPLIT = ["photo"]
 
 
 class PACSConfig(tfds.core.BuilderConfig):
@@ -71,25 +71,25 @@ class PACS(tfds.core.GeneratorBasedBuilder):
         
 
         filenames = ['pacs/art_painting_train.hdf5', 'pacs/cartoon_train.hdf5',
-                     'pacs/photo_train.hdf5']
+                     'pacs/sketch_train.hdf5']
         train_files = [os.path.join(local_settings.RAW_DATA_PATH, f) 
             for f in filenames]
 
         filenames = ['pacs/art_painting_val.hdf5', 'pacs/cartoon_val.hdf5',
-                     'pacs/photo_val.hdf5']
+                     'pacs/sketch_val.hdf5']
         val_files_in = [os.path.join(local_settings.RAW_DATA_PATH, f) 
             for f in filenames]
 
-        filenames = ['pacs/sketch_val.hdf5']
+        filenames = ['pacs/photo_val.hdf5']
         val_files_out = [os.path.join(local_settings.RAW_DATA_PATH, f)
                        for f in filenames]
 
         filenames = ['pacs/art_painting_test.hdf5', 'pacs/cartoon_test.hdf5',
-                     'pacs/photo_test.hdf5']
+                     'pacs/sketch_test.hdf5']
         test_files_in = [os.path.join(local_settings.RAW_DATA_PATH, f) 
             for f in filenames]
 
-        filenames = ['pacs/sketch_test.hdf5']
+        filenames = ['pacs/photo_test.hdf5']
         test_files_out = [os.path.join(local_settings.RAW_DATA_PATH, f)
                        for f in filenames]
 
